@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @AkshitIreddy
 - 👀 I’m interested in making realistic chatbots and cool websites.
-- 🌱 I’m currently learning about deep learning and i've made a few DL models too.
+- 🌱 I have made a few Deep learning and machine learning models too.
 - 📫 How to reach me : This is my LinkedIn profile linkedin.com/in/akshit-ireddy
 
 <!---
