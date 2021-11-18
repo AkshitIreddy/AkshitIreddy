@@ -1,4 +1,4 @@
-
+![Screenshot 2021-11-18 184632](https://user-images.githubusercontent.com/90443032/142422473-b4095365-4ce4-40a7-8532-fc5dd708514f.png)
 
 - 👋 Hi, I’m @AkshitIreddy
 - 👀 My hobbies are making AI's that resemble humans and writing code for complex mathematical problems.
