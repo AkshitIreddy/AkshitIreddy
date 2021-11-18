@@ -2,8 +2,7 @@
 
 -👋 Hi, My name is Akshit Ireddy. 😃
 
--💎 I'm interested in developing realistic conversational AI's 🤖 and creating Deep Learning and machine learning models. I also like to write code for complex mathematical    
-- problems. 
+-💎 I'm interested in developing realistic conversational AI's 🤖 and creating Deep Learning and machine learning models. I also like to write code for complex mathematical    problems. 
 - 📱 How to reach me : This is my LinkedIn profile --> linkedin.com/in/akshit-ireddy
 
 <!---
