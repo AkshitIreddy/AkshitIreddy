@@ -1,4 +1,4 @@
-![Screenshot 2021-11-18 184632](https://user-images.githubusercontent.com/90443032/142422473-b4095365-4ce4-40a7-8532-fc5dd708514f.png)
+
 ![](https://raw.githubusercontent.com/AkshitIreddy/github-stats/master/generated/overview.svg#gh-dark-mode-only)
 
 
