@@ -1,6 +1,6 @@
 ![Screenshot 2021-11-18 184632](https://user-images.githubusercontent.com/90443032/142422473-b4095365-4ce4-40a7-8532-fc5dd708514f.png)
-![](https://raw.githubusercontent.com/username/github-stats/master/generated/overview.svg#gh-dark-mode-only)
-![](https://raw.githubusercontent.com/username/github-stats/master/generated/overview.svg#gh-light-mode-only)
+![](https://raw.githubusercontent.com/akshitireddy/github-stats/master/generated/overview.svg#gh-dark-mode-only)
+![](https://raw.githubusercontent.com/akshitireddy/github-stats/master/generated/overview.svg#gh-light-mode-only)
 
 - 👋 𝐇𝐢, 𝐌𝐲 𝐧𝐚𝐦𝐞 𝐢𝐬 𝐀𝐤𝐬𝐡𝐢𝐭 𝐈𝐫𝐞𝐝𝐝𝐲. 😃
 - 💎 𝐈 𝐥𝐢𝐤𝐞 𝐦𝐚𝐤𝐢𝐧𝐠 𝐫𝐞𝐚𝐥𝐢𝐬𝐭𝐢𝐜 𝐜𝐨𝐧𝐯𝐞𝐫𝐬𝐚𝐭𝐢𝐨𝐧𝐚𝐥 𝐀𝐈'𝐬 🤖 𝐚𝐧𝐝 𝐜𝐫𝐞𝐚𝐭𝐢𝐧𝐠 𝐃𝐞𝐞𝐩 𝐋𝐞𝐚𝐫𝐧𝐢𝐧𝐠 𝐚𝐧𝐝 𝐦𝐚𝐜𝐡𝐢𝐧𝐞 𝐥𝐞𝐚𝐫𝐧𝐢𝐧𝐠 𝐦𝐨𝐝𝐞𝐥𝐬.𝐈'𝐦 𝐢𝐧𝐭𝐞𝐫𝐞𝐬𝐭𝐞𝐝 𝐢𝐧 𝐦𝐚𝐤𝐢𝐧𝐠 𝐀𝐈 𝐠𝐞𝐧𝐞𝐫𝐚𝐭𝐞𝐝 𝐦𝐮𝐬𝐢𝐜 𝐚𝐧𝐝 𝐚𝐫𝐭.
