@@ -4,7 +4,9 @@ Whether it's diving into the latest AI research 📜 from companies like Google,
 
 I am actively pursuing self-directed learning in expanding my knowledge in this field and other areas like cloud computing, cyber security, game development, ar, vr etc. I know that I still have much to learn, but I am eager to continue growing and expanding my skillset as I pursue my career in this exciting field. ✨
 
-📱 𝐇𝐨𝐰 𝐭𝐨 𝐫𝐞𝐚𝐜𝐡 𝐦𝐞 : 𝐓𝐡𝐢𝐬 𝐢𝐬 𝐦𝐲 𝐋𝐢𝐧𝐤𝐞𝐝𝐈𝐧 𝐩𝐫𝐨𝐟𝐢𝐥𝐞 --> linkedin.com/in/akshit-ireddy
+📱 𝐇𝐨𝐰 𝐭𝐨 𝐫𝐞𝐚𝐜𝐡 𝐦𝐞 : 
+LinkedIn Profile --> https://www.linkedin.com/in/akshit-ireddy/
+Medium Profile --> https://medium.com/@akshit.r.ireddy
 
 <!---
 AkshitIreddy/AkshitIreddy is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
