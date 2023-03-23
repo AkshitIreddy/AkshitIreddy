@@ -10,6 +10,7 @@ LinkedIn Profile --> https://www.linkedin.com/in/akshit-ireddy/
 
 Medium Profile --> https://medium.com/@akshit.r.ireddy
 
+Twitter Profile --> https://twitter.com/akshit_ireddy
 <!---
 AkshitIreddy/AkshitIreddy is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
