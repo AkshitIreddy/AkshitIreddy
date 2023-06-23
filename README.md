@@ -2,8 +2,6 @@ Hi, I'm Akshit - a budding AI enthusiast with skills in prompt engineering, gene
 
 💡 LinkedIn: https://www.linkedin.com/in/akshit-ireddy
 
-🐤 Twitter: https://twitter.com/akshit_ireddy
-
 ✍️ Medium: https://medium.com/@akshit.r.ireddy 
 <!---
 AkshitIreddy/AkshitIreddy is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
