@@ -1,0 +1,41 @@
+name: Refresh stats card
+
+# Regenerates assets/stats.svg from live GitHub data so the numbers stay current.
+# Uses the built-in GITHUB_TOKEN (no personal token needed for public data).
+
+on:
+  schedule:
+    - cron: "17 4 * * 0"   # weekly, Sundays at 04:17 UTC
+  push:
+    branches: [main]        # on any commit to main
+    tags: ["v*"]            # and on any version tag (v1.0, v2.3, ...)
+  workflow_dispatch:        # ...or run it manually from the Actions tab
+
+# The Action's own commit is made with GITHUB_TOKEN, which GitHub does not let
+# re-trigger workflows — so the push trigger above can't cause a loop.
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Regenerate stats card
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python make_stats.py "${{ github.repository_owner }}"
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/stats.svg
+          git diff --cached --quiet || git commit -m "chore: refresh stats card"
+          git push

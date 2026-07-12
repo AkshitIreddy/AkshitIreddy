@@ -1,22 +1,22 @@
 <!--
-  GitHub PROFILE README for  github.com/AkshitIreddy
-  Lives in the repo  AkshitIreddy/AkshitIreddy  (README.md + /assets at root).
-  The wave is a hand-generated animated SVG (see generate_wave.py in the source folder).
+  GitHub PROFILE README for  github.com/AkshitIreddy   (repo: AkshitIreddy/AkshitIreddy)
+  · The banner + divider are hand-generated animated SVGs (transparent, blend with any theme).
+  · The stats card is a self-hosted SVG generated from live data by make_stats.py,
+    refreshed daily by .github/workflows/stats.yml — no third-party service to break.
 -->
 
 <div align="center">
 
-<!-- ░░ LIVING WAVE — animates on GitHub (SMIL SVG served as an image) ░░ -->
-<img src="assets/wave.svg" width="100%" alt="animated synthwave voice waveform" />
+<!-- ░░ LIVING WAVE — transparent, animates on GitHub ░░ -->
+<img src="assets/wave.svg" width="100%" alt="animated synthwave waveform" />
 
-##### Software Engineer specializing in Generative AI Integrations — building Agentic AI for virtual worlds.
+### Software Engineer specializing in Generative AI Integrations — building Agentic AI for virtual worlds.
 
-<a href="mailto:akshit.r.ireddy@gmail.com"><img src="https://img.shields.io/badge/Email-0d1117?style=for-the-badge&logo=gmail&logoColor=22d3ee" alt="Email" /></a>
-<a href="https://www.linkedin.com/in/akshit-ireddy"><img src="https://img.shields.io/badge/LinkedIn-0d1117?style=for-the-badge&logo=linkedin&logoColor=ff5edb" alt="LinkedIn" /></a>
+<a href="mailto:akshit.r.ireddy@gmail.com"><img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+<a href="https://www.linkedin.com/in/akshit-ireddy"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
 
 <img src="assets/wave-slim.svg" width="100%" alt="" />
 
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=AkshitIreddy&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117&title_color=ff5edb&icon_color=22d3ee&text_color=c9d1d9&ring_color=b45cff" alt="GitHub stats — stars, commits, PRs" />
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=AkshitIreddy&layout=compact&langs_count=8&hide_border=true&bg_color=0d1117&title_color=ff5edb&text_color=c9d1d9" alt="Top languages" />
+<img src="assets/stats.svg" width="100%" alt="GitHub stats: stars, followers, repos, commits, forks and top languages" />
 
 </div>
