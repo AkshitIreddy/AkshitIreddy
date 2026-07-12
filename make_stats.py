@@ -118,11 +118,10 @@ def icon_fork(cx, cy, c):
 
 
 TILE_DEFS = [
-    ("stars",     "Stars",     icon_star,   HOTPINK),
-    ("followers", "Followers", icon_person, CYAN),
-    ("repos",     "Repos",     icon_repo,   PURPLE),
-    ("commits",   "Commits",   icon_commit, PINK),
-    ("forks",     "Forks",     icon_fork,   BLUE),
+    ("stars",   "Stars",   icon_star,   HOTPINK),
+    ("repos",   "Repos",   icon_repo,   PURPLE),
+    ("commits", "Commits", icon_commit, PINK),
+    ("forks",   "Forks",   icon_fork,   BLUE),
 ]
 
 LANG_COLORS = [HOTPINK, CYAN, PURPLE, PINK, BLUE, VIOLET]
@@ -130,7 +129,8 @@ LANG_COLORS = [HOTPINK, CYAN, PURPLE, PINK, BLUE, VIOLET]
 
 def build(data):
     W, H = 1280, 300
-    centers = [160, 400, 640, 880, 1120]
+    n = len(TILE_DEFS)
+    centers = [W * (i + 0.5) / n for i in range(n)]  # evenly spaced for any count
     tiles = []
     for (key, label, icon, color), cx in zip(TILE_DEFS, centers):
         val = fmt(data[key])
