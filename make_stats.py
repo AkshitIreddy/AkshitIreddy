@@ -26,6 +26,7 @@ CYAN    = "#22d3ee"
 BLUE    = "#4f9dff"
 NUM     = "#ff4da6"   # number colour — reads on both dark & light backgrounds
 LABEL   = "#8b949e"   # GitHub's neutral grey — safe on both themes
+LEGEND_FONT = 18      # language names under the bar
 
 
 def gh(path):
@@ -164,8 +165,8 @@ def build(data):
     # centred legend row
     items = "".join(
         f'<circle cx="{lx0}" cy="270" r="5" fill="{col}"/>'
-        f'<text x="{lx0+11}" y="275" font-family="\'Segoe UI\',system-ui,sans-serif" '
-        f'font-size="15" fill="{LABEL}">{name} {pct}</text>'
+        f'<text x="{lx0+12}" y="276" font-family="\'Segoe UI\',system-ui,sans-serif" '
+        f'font-size="{LEGEND_FONT}" fill="{LABEL}">{name} {pct}</text>'
         for (name, pct, col, lx0) in _legend_positions(seg, LANG_COLORS)
     )
 
@@ -185,7 +186,8 @@ def build(data):
 
 def _legend_positions(seg, colors):
     # estimate item widths and centre the whole legend row
-    widths = [30 + (len(name) + 4) * 8.5 for name, _ in seg]
+    char_w = LEGEND_FONT * 0.57
+    widths = [34 + (len(name) + 4) * char_w for name, _ in seg]
     total_w = sum(widths)
     start = (1280 - total_w) / 2
     out = []
