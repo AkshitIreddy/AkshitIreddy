@@ -26,7 +26,6 @@ CYAN    = "#22d3ee"
 BLUE    = "#4f9dff"
 NUM     = "#ff4da6"   # number colour — reads on both dark & light backgrounds
 LABEL   = "#8b949e"   # GitHub's neutral grey — safe on both themes
-LEGEND_FONT = 18      # language names under the bar
 
 
 def gh(path):
@@ -55,14 +54,6 @@ def fetch():
     stars = sum(r["stargazers_count"] for r in owned)
     forks = sum(r["forks_count"] for r in owned)
 
-    lang_bytes = {}
-    for r in owned:
-        try:
-            for lang, b in gh(f"repos/{r['full_name']}/languages").items():
-                lang_bytes[lang] = lang_bytes.get(lang, 0) + b
-        except urllib.error.HTTPError:
-            pass
-
     try:
         commits = gh(f"search/commits?q=author:{USER}&per_page=1").get("total_count", 0)
     except urllib.error.HTTPError:
@@ -74,7 +65,6 @@ def fetch():
         "repos": user.get("public_repos", len(owned)),
         "followers": user.get("followers", 0),
         "forks": forks,
-        "langs": lang_bytes,
     }
 
 
@@ -125,50 +115,25 @@ TILE_DEFS = [
     ("forks",   "Forks",   icon_fork,   BLUE),
 ]
 
-LANG_COLORS = [HOTPINK, CYAN, PURPLE, PINK, BLUE, VIOLET]
-
-
 def build(data):
-    W, H = 1280, 300
+    # Compact four-metric card. The icons sit slightly closer to the top edge
+    # so the card follows the wave divider with a little less visual gap.
+    W, H = 1280, 190
     n = len(TILE_DEFS)
     centers = [W * (i + 0.5) / n for i in range(n)]  # evenly spaced for any count
     tiles = []
     for (key, label, icon, color), cx in zip(TILE_DEFS, centers):
         val = fmt(data[key])
         tiles.append(
-            f'<g filter="url(#ng)">{icon(cx, 66, color)}</g>'
-            f'<text x="{cx}" y="150" text-anchor="middle" '
+            f'<g filter="url(#ng)">{icon(cx, 54, color)}</g>'
+            f'<text x="{cx}" y="132" text-anchor="middle" '
             f'font-family="\'Segoe UI\',system-ui,-apple-system,Helvetica,Arial,sans-serif" '
             f'font-size="46" font-weight="800" fill="{NUM}" filter="url(#ng)">{val}</text>'
-            f'<text x="{cx}" y="182" text-anchor="middle" '
+            f'<text x="{cx}" y="164" text-anchor="middle" '
             f'font-family="\'Segoe UI\',system-ui,-apple-system,Helvetica,Arial,sans-serif" '
             f'font-size="16" font-weight="600" letter-spacing="2.5" fill="{LABEL}">'
             f'{label.upper()}</text>'
         )
-
-    # language bar (byte-accurate, top 5 + other)
-    langs = sorted(data["langs"].items(), key=lambda kv: kv[1], reverse=True)
-    total = sum(b for _, b in langs) or 1
-    top = langs[:5]
-    other = sum(b for _, b in langs[5:])
-    seg = list(top) + ([("Other", other)] if other else [])
-
-    bx, bw, by, bh = 160, 960, 214, 16
-    x = bx
-    bar = []
-    for i, (name, b) in enumerate(seg):
-        w = bw * (b / total)
-        col = LANG_COLORS[i % len(LANG_COLORS)]
-        bar.append(f'<rect x="{x:.1f}" y="{by}" width="{max(w-2,1):.1f}" height="{bh}" '
-                   f'rx="4" fill="{col}"/>')
-        x += w
-    # centred legend row
-    items = "".join(
-        f'<circle cx="{lx0}" cy="270" r="5" fill="{col}"/>'
-        f'<text x="{lx0+12}" y="276" font-family="\'Segoe UI\',system-ui,sans-serif" '
-        f'font-size="{LEGEND_FONT}" fill="{LABEL}">{name} {pct}</text>'
-        for (name, pct, col, lx0) in _legend_positions(seg, LANG_COLORS)
-    )
 
     defs = ('<defs>'
             '<filter id="ng" x="-40%" y="-40%" width="180%" height="180%">'
@@ -176,35 +141,14 @@ def build(data):
             '<feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>'
             '</filter></defs>')
 
-    body = (f'{"".join(tiles)}'
-            f'<g>{"".join(bar)}</g>'
-            f'{items}')
+    body = "".join(tiles)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
             f'width="{W}" height="{H}" role="img" '
             f'aria-label="GitHub stats for {USER}">{defs}{body}</svg>\n')
-
-
-def _legend_positions(seg, colors):
-    # estimate item widths and centre the whole legend row
-    char_w = LEGEND_FONT * 0.57
-    widths = [34 + (len(name) + 4) * char_w for name, _ in seg]
-    total_w = sum(widths)
-    start = (1280 - total_w) / 2
-    out = []
-    x = start
-    langs_total = sum(b for _, b in seg) or 1
-    for i, (name, b) in enumerate(seg):
-        pct = f"{b/langs_total*100:.0f}%"
-        out.append((name, pct, colors[i % len(colors)], x))
-        x += widths[i]
-    return out
-
-
 if __name__ == "__main__":
     os.makedirs("assets", exist_ok=True)
     data = fetch()
-    print("stats:", {k: v for k, v in data.items() if k != "langs"})
-    print("langs:", sorted(data["langs"].items(), key=lambda kv: kv[1], reverse=True)[:6])
+    print("stats:", data)
     svg = build(data)
     with open("assets/stats.svg", "w", encoding="utf-8") as f:
         f.write(svg)

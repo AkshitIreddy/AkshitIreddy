@@ -17,6 +17,6 @@
 <!-- ░░ LIVING WAVE — transparent, animates on GitHub ░░ -->
 <img src="assets/wave-slim.svg" width="100%" alt="animated synthwave waveform" />
 
-<img src="assets/stats.svg" width="100%" alt="GitHub stats: stars, repos, commits, forks and top languages" />
+<img src="assets/stats.svg" width="100%" alt="GitHub stats: stars, repos, commits and forks" />
 
 </div>
