@@ -12,6 +12,8 @@
 
 <a href="mailto:akshit.r.ireddy@gmail.com"><img src="assets/badge-gmail.svg" height="38" alt="Email" /></a>
 &nbsp;
+<a href="https://akshitireddy.github.io/"><img src="assets/badge-website.svg" height="38" alt="Personal website" /></a>
+&nbsp;
 <a href="https://www.linkedin.com/in/akshit-ireddy"><img src="assets/badge-linkedin.svg" height="38" alt="LinkedIn" /></a>
 
 <!-- ░░ LIVING WAVE — transparent, animates on GitHub ░░ -->
