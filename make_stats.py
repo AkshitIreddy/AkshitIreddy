@@ -10,9 +10,12 @@ Reads optional GITHUB_TOKEN from the environment for a higher rate limit
 """
 import json
 import os
+import re
 import sys
+from datetime import datetime, timezone
+from html import unescape
+from urllib.parse import quote
 import urllib.request
-import urllib.error
 
 USER = sys.argv[1] if len(sys.argv) > 1 else "AkshitIreddy"
 TOKEN = os.environ.get("GITHUB_TOKEN", "").strip()
@@ -39,6 +42,52 @@ def gh(path):
         return json.load(r)
 
 
+def contribution_count_for_year(year):
+    """Return the public profile's contribution total for one calendar year.
+
+    GitHub's profile calendar includes anonymized private/internal activity
+    when the user has chosen to publish those counts. Fetching the public
+    calendar therefore matches what profile visitors see without granting this
+    workflow access to any private repository names or contents.
+    """
+    username = quote(USER, safe="")
+    url = (f"https://github.com/users/{username}/contributions"
+           f"?from={year}-01-01&to={year}-12-31")
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "profile-stats-card",
+        "Accept": "text/html",
+    })
+    with urllib.request.urlopen(req, timeout=30) as r:
+        page = r.read().decode("utf-8", errors="replace")
+
+    # Keep the match scoped to headings so thousands of daily tooltip counts
+    # cannot be mistaken for the annual total.
+    for heading in re.findall(r"<h2\b[^>]*>(.*?)</h2>", page,
+                              flags=re.IGNORECASE | re.DOTALL):
+        text = unescape(re.sub(r"<[^>]+>", " ", heading))
+        text = re.sub(r"\s+", " ", text).strip()
+        match = re.search(
+            rf"([0-9][0-9,]*)\s+contributions?\s+in\s+{year}\b",
+            text,
+            flags=re.IGNORECASE,
+        )
+        if match:
+            return int(match.group(1).replace(",", ""))
+
+    raise RuntimeError(f"Could not parse GitHub contribution total for {year}")
+
+
+def lifetime_contributions(created_at):
+    start_year = int(created_at[:4])
+    current_year = datetime.now(timezone.utc).year
+    yearly = {
+        year: contribution_count_for_year(year)
+        for year in range(start_year, current_year + 1)
+    }
+    print("contributions by year:", yearly)
+    return sum(yearly.values())
+
+
 def fetch():
     user = gh(f"users/{USER}")
     repos, page = [], 1
@@ -54,14 +103,11 @@ def fetch():
     stars = sum(r["stargazers_count"] for r in owned)
     forks = sum(r["forks_count"] for r in owned)
 
-    try:
-        commits = gh(f"search/commits?q=author:{USER}&per_page=1").get("total_count", 0)
-    except urllib.error.HTTPError:
-        commits = 0
+    contributions = lifetime_contributions(user["created_at"])
 
     return {
         "stars": stars,
-        "commits": commits,
+        "contributions": contributions,
         "repos": user.get("public_repos", len(owned)),
         "followers": user.get("followers", 0),
         "forks": forks,
@@ -82,11 +128,19 @@ def icon_star(cx, cy, c):
         pts.append(f"{cx + r*math.cos(a):.1f},{cy + r*math.sin(a):.1f}")
     return f'<polygon points="{" ".join(pts)}" fill="{c}"/>'
 
-def icon_commit(cx, cy, c):
-    return (f'<g stroke="{c}" stroke-width="3" stroke-linecap="round" fill="none">'
-            f'<line x1="{cx-20}" y1="{cy}" x2="{cx-7}" y2="{cy}"/>'
-            f'<line x1="{cx+7}" y1="{cy}" x2="{cx+20}" y2="{cy}"/>'
-            f'<circle cx="{cx}" cy="{cy}" r="7"/></g>')
+def icon_contribution(cx, cy, c):
+    # A compact contribution-calendar glyph with varied activity levels.
+    cells = [
+        (-18, -13, .35), (-7, -13, .75), (4, -13, 1), (15, -13, .55),
+        (-18, -2, .7), (-7, -2, 1), (4, -2, .45), (15, -2, .85),
+        (-18, 9, .3), (-7, 9, .6), (4, 9, .9), (15, 9, .4),
+    ]
+    squares = "".join(
+        f'<rect x="{cx+dx}" y="{cy+dy}" width="8" height="8" rx="2" '
+        f'fill="{c}" fill-opacity="{opacity}"/>'
+        for dx, dy, opacity in cells
+    )
+    return f'<g>{squares}</g>'
 
 def icon_repo(cx, cy, c):
     return (f'<g stroke="{c}" stroke-width="3" stroke-linejoin="round" '
@@ -111,7 +165,7 @@ def icon_fork(cx, cy, c):
 TILE_DEFS = [
     ("stars",   "Stars",   icon_star,   HOTPINK),
     ("repos",   "Repos",   icon_repo,   PURPLE),
-    ("commits", "Commits", icon_commit, PINK),
+    ("contributions", "Contributions", icon_contribution, PINK),
     ("forks",   "Forks",   icon_fork,   BLUE),
 ]
 
